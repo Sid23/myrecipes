@@ -9,6 +9,18 @@ $navbar-default-bg: #1a1ead;
     text-align: center;
 }
 
+#title {
+    color: #1a1ead;
+}
+
+.chef_info {
+  margin-top: 5px;
+}
+
+.description {
+  margin-top: 0;
+}
+
 .jumbotron {
     background-image: asset-url('foods.jpg');
     background-size: cover;
@@ -25,6 +37,10 @@ $navbar-default-bg: #1a1ead;
     margin-bottom: 30px;
     font-weight: bold;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.well a {
+  color: #1a1ead;
 }
 
 .footer {
@@ -74,10 +90,19 @@ $navbar-default-bg: #1a1ead;
 }
 
 .btn-xlarge {
-    background-color: #1a1ead
+    background-color: #1a1ead;
+    cursor: pointer;
 }
 
 .btn-xlarge:hover {
     color: #fff;
-    text-decoration:none;
+    size: -20px; 
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 5px #999;
+}
+
+.btn-xlarge:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
