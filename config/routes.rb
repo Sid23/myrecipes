@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   patch '/recipes/:id', to: 'recipes#update'
   put '/recipes/:id', to: 'recipes#update'
   delete '/recipes/:id', to: 'recipes#destroy'
+
+  get '/signup', to: 'chefs#new'
+  resources :chefs, except: [:new]
 end
