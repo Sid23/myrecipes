@@ -5,7 +5,7 @@ class ChefsController < ApplicationController
   end
 
 	def index
-		@chefs = Chef.all
+		@chefs = Chef.paginate(page: params[:page], per_page: 5)
   end
 
 	def create
@@ -35,6 +35,13 @@ class ChefsController < ApplicationController
       render 'edit'
     end  
   end
+
+def destroy
+  set_chef
+  @chef.destroy
+  flash[:danger] = "Chef and all associated recipes have been deleted"
+  redirect_to chefs_path
+end
 
   private
   
