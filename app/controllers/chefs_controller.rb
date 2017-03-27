@@ -1,6 +1,6 @@
 class ChefsController < ApplicationController
 	before_action :set_chef, only: [:show, :edit, :update, :destroy]
-	before_action :set_chef, only: [:edit, :update, :destroy]
+	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def new
 		@chef = Chef.new
@@ -22,7 +22,7 @@ class ChefsController < ApplicationController
   end
 
 	def show
-	
+		
 	end
 
 	def edit
@@ -50,7 +50,7 @@ end
   	end
 
 		def set_chef
-				@chef = Chef.find(params[:id])
+			@chef = Chef.find(params[:id])
 		end
 
 		def require_same_user

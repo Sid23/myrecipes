@@ -37,7 +37,8 @@
       </div>
       <div class="form-group center">
         <div class="col-md-offset-2 col-md-8 center">
-          <%= f.submit "Create my account", class: "btn btn-primary btn-lg btn-xlarge" %>
+          <!-- Returns true if this object hasn’t been saved yet – that is, a record for the object doesn’t exist in the database yet; otherwise, returns false  -->
+          <%= f.submit(@chef.new_record? ? "Create my account" : "Update my account", class: "btn btn-primary btn-lg btn-xlarge") %>
         </div>
       </div>
     <% end %>
