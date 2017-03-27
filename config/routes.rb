@@ -14,5 +14,12 @@ Rails.application.routes.draw do
   delete '/recipes/:id', to: 'recipes#destroy'
 
   get '/signup', to: 'chefs#new'
+  # Because the chef creation is managed by the signup page
   resources :chefs, except: [:new]
+
+  # Routes for login
+  get '/login', to: 'sessions#new'
+  post '/login', to: "sessions#create"
+  delete '/logout', to: "sessions#destroy"
+
 end
