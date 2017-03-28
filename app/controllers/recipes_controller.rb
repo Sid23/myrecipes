@@ -10,7 +10,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    
+    @comments = @recipe.comments.paginate(page: params[:page], per_page: 5)
+    @comment = Comment.new
   end
 
   def new
@@ -58,7 +59,7 @@ class RecipesController < ApplicationController
     end
 
     def require_same_user
-      if current_chef != @recipe.chef
+      if current_chef != @recipe.chef && !current_chef.admin?
         flash[:danger] = "You can only edit or delete your own recipes"
         redirect_to recipes_path
       end  

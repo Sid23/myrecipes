@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 20170328084028) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text    "description"
-    t.integer "chef_id"
-    t.integer "recipe_id"
+    t.text     "description"
+    t.integer  "chef_id"
+    t.integer  "recipe_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "ingredients", force: :cascade do |t|

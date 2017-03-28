@@ -8,4 +8,7 @@ class Recipe < ApplicationRecord
   # Following 2 lines are needed to create the association between Recipes and Ingredients
   has_many :recipe_ingredients
   has_many :ingredients, through: :recipe_ingredients
+
+  # Association with comments, if recipe is deleted, its comment are deleted as well
+  has_many :comments, dependent: :destroy
 end

@@ -26,4 +26,9 @@ Rails.application.routes.draw do
   # They cannot be deleted, and can be modified only by admin users
   resources :ingredients, except: [:destroy]
 
+  #resources :recipes do
+    #resources :comments, only: [:create]
+  post '/recipe/:id/comments', to: "comments#create", as: "recipe_comments"
+  #end
+
 end
