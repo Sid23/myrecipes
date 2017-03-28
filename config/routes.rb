@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
+  # Routes for ingredient
+  # They cannot be deleted, and can be modified only by admin users
+  resources :ingredients, except: [:destroy]
+
 end

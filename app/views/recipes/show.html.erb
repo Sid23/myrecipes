@@ -5,12 +5,19 @@
   <hr />
   <%= simple_format(@recipe.description) %>
   <hr />
+  <!-- To display the ingredients used for the shown recipe, if any -->
+  <% if @recipe.ingredients.any? %>
+    <p>Ingredients: <%= render @recipe.ingredients %></p>
+  <% end %>
+  <hr />
+
   <div class="pull-right">
     <p class="center">
       <em>Created by:</em>
     </p>
     <p class="center">
-      <%= link_to gravatar_for(@recipe.chef), recipes_path %>
+      <!-- Image it's a link for the chef who has created that recipe -->
+      <%= link_to gravatar_for(@recipe.chef), chef_path(@recipe.chef) %>
     </p>
     <p class="center">
       <small><%= @recipe.chef.chefname.capitalize %></small>

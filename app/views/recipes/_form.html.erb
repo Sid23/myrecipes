@@ -20,6 +20,20 @@
         </div>
       </div>
       <hr />
+
+      <!-- This form member is used to provide all ingredients as a checkbox list in order to bind them to a recipe -->
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8 center">
+            <!-- bind checkboxes to ingredients and display the name -->
+            <%= f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb| %>
+              <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text.capitalize} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+      <br>
       <div class="form-group">
         <div class="center">
           <%= f.submit class: "btn btn-primary btn-lg btn-xlarge" %>
