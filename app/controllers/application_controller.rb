@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_chef, :logged_in?
 
   # Set current_chef as the chef with the id of autenticated chef, if any, otherwise nil
+  # id of logged chef is stored into session hash
   def current_chef
     @current_chef ||= Chef.find(session[:chef_id]) if session[:chef_id]
   end

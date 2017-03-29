@@ -1,7 +1,10 @@
 class SessionsController < ApplicationController
   def create
+    # Find a chef who has the email used for the login
     chef = Chef.find_by(email: params[:session][:email].downcase)
+    # .authenticate get a password compute its hash and compare it with the one stored in the db
     if chef && chef.authenticate(params[:session][:password])
+      # define a session parameter
       session[:chef_id] = chef.id
       flash[:success] = "You have successfully logged in"
       redirect_to chef
