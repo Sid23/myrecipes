@@ -34,6 +34,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'will_paginate', '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+# To generate uploader of images
+gem 'carrierwave', '0.11.2'
+# To resize images
+gem 'mini_magick'
+# To store images for production
+gem 'fog'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

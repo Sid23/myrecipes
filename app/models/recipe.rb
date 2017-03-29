@@ -14,6 +14,9 @@ class Recipe < ApplicationRecord
   # keep track of like/dislike
   has_many :likes, dependent: :destroy
 
+  # to associate image to recipe using uploader
+  mount_uploader :image, ImageUploader
+
   # Functions to compute number of like/dislike
   def thumbs_up_total
     self.likes.where(like: true).size

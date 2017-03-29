@@ -36,5 +36,9 @@
       </div>
 
     </div>
+    <!-- to display image, if any -->
+    <div class="col-md-2">
+      <%= image_tag(recipe.image.url, size: "150x100") if recipe.image? %>
+    </div>
   </div>
 <% end %>
