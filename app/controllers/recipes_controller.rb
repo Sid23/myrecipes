@@ -1,9 +1,10 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :like]
   # To show a recipes and a list of all recipes, must be a logged user
-  before_action :require_user, except: [:index, :show]
+  before_action :require_user, except: [:index, :show, :like]
   # To modify and delete a recipe must be the user whho has created it before
   before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :require_user_like, only: [:like]
   
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 5)
@@ -48,6 +49,17 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def like
+    like = Like.create(like: params[:like], chef: current_chef, recipe: @recipe)
+    if like.valid?
+      flash[:success] = "Your selection was succesful"
+      redirect_to :back
+    else
+      flash[:danger] = "You can only like/dislike a recipe once"
+      redirect_to :back
+    end
+  end
+
   private
     def recipe_params
       # Allow to get as parameter a list of that are linked to the recipe from its creation
@@ -63,5 +75,12 @@ class RecipesController < ApplicationController
         flash[:danger] = "You can only edit or delete your own recipes"
         redirect_to recipes_path
       end  
+    end
+
+    def require_user_like
+      if !logged_in?
+        flash[:danger] = "You must be logged in to perform that action"
+        redirect_to :back
+      end
     end
 end

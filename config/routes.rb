@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   post '/recipe/:id/comments', to: "comments#create", as: "recipe_comments"
   #end
 
+  post '/recipe/:id/like', to: "recipes#like", as: "like_recipe"
 end

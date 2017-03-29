@@ -13,4 +13,6 @@ class Chef < ApplicationRecord
   validates :password, presence:true, length: { minimum: 5}, allow_nil: true
   # Association with comments, if chef is deleted, its comment are deleted as well
   has_many :comments, dependent: :destroy
+  # keep track of like/dislike
+  has_many :likes, dependent: :destroy
 end

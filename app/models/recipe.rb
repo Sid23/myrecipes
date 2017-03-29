@@ -11,4 +11,15 @@ class Recipe < ApplicationRecord
 
   # Association with comments, if recipe is deleted, its comment are deleted as well
   has_many :comments, dependent: :destroy
+  # keep track of like/dislike
+  has_many :likes, dependent: :destroy
+
+  # Functions to compute number of like/dislike
+  def thumbs_up_total
+    self.likes.where(like: true).size
+  end
+
+  def thumbs_down_total
+    self.likes.where(like: false).size    
+  end
 end
