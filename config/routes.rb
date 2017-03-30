@@ -26,10 +26,14 @@ Rails.application.routes.draw do
   # They cannot be deleted, and can be modified only by admin users
   resources :ingredients, except: [:destroy]
 
-  #resources :recipes do
-    #resources :comments, only: [:create]
-  post '/recipe/:id/comments', to: "comments#create", as: "recipe_comments"
-  #end
+  #nested route
+  resources :recipes do
+    resources :comments, only: [:create]
+  #post '/recipe/:id/comments', to: "comments#create", as: "recipe_comments"
+  end
 
   post '/recipe/:id/like', to: "recipes#like", as: "like_recipe"
+
+  # Route for ActionCable server
+  mount ActionCable.server => '/cable'
 end

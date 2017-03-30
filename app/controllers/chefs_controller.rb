@@ -14,7 +14,10 @@ class ChefsController < ApplicationController
 	def create
     @chef = Chef.new(chef_params)
     if @chef.save
+			# After the login the new chef is automatically logged in
   		session[:chef_id] = @chef.id
+			# signed means automatically generation of a signature for that cookie, (then it will encrypt for the transmission)
+			cookies.signed[:chef_id] = @chef.id
       flash[:success] = "Welcome #{@chef.chefname} to MyRecipes App!"
       redirect_to chef_path(@chef)
     else

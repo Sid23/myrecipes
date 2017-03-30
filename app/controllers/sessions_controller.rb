@@ -6,6 +6,8 @@ class SessionsController < ApplicationController
     if chef && chef.authenticate(params[:session][:password])
       # define a session parameter
       session[:chef_id] = chef.id
+      # it need to set cookies as well, because ActionCable doesn't work with sessions
+      cookies.signed[:chef_id] = chef.id
       flash[:success] = "You have successfully logged in"
       redirect_to chef
     else
